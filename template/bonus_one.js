@@ -11,7 +11,21 @@
 // $.html(), $.text(), etc.
 // keyup events could be helpful to get value of field as the user types
 
-(function() {
-	// Magic!
-	console.log('Keepin\'n it clean with an external script!');
-})();
+var app = angular.module('app', []);
+app.controller('ctrl', function($scope) {
+	$( document ).ready(function() {
+		$.ajax({
+			method: "GET",
+			url: "http://www.mattbowytz.com/simple_api.json?data=all",
+			dataType: "json"
+		})
+		.done(function (msg) {
+			$scope.data = msg.data.interests.concat(msg.data.programming);
+			console.log($scope.data);
+		});
+	});
+	
+	 $scope.googleResult = function (d) {
+		 window.open("https://www.google.com/search?q=" + d, '_blank');
+	 };
+});

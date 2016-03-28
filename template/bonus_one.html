@@ -1,11 +1,11 @@
 <!doctype html>
-<html lang="en">
+<html lang="en" ng-app="app">
 <head>
 	<meta charset="UTF-8">
 	<title>Predictive Search</title>
 	<link rel="stylesheet" href="bonus_one.css">
 </head>
-<body>
+<body ng-controller="ctrl">
 	<h1 class="h1">Predictive Search</h1>
 
 	<div class="flexsearch">
@@ -13,14 +13,19 @@
 			<!-- You'll handle the form with js, so no need for method and action -->
 			<form class="flexsearch-form" id="mainForm">
 				<div class="flexsearch-input-wrapper">
-					<input class="flexsearch-input" type="search" placeholder="search">
+					<input class="flexsearch-input" type="search" placeholder="search" ng-model="search">
 				</div>
 				<input class="flexsearch-submit" type="submit" value="&#10140;"/>
 			</form>
+			<div ng-show="search" class="flexsearch-results">
+				<div ng-repeat="d in data | filter:search">
+					<a ng-class="" ng-click="googleResult(d)" >{{d}}</a>
+				</div>
+			</div>
 		</div>
 	</div>
 
-
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 	<script src="bonus_one.js"></script>
 </body>
